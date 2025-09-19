@@ -1,11 +1,11 @@
 {
-  "name": "@expect-asymmetric/vitest-3.x-integration-test",
+  "name": "@expect-asymmetric/vitest-2.x-integration-test",
   "description": "Testing Vitest with expect-asymmetric",
   "version": "0.0.0",
   "scripts": {
     "test:intg": "vitest run --dir ./"
   },
   "devDependencies": {
-    "vitest": "^3.2.4"
+    "vitest": "^2.1.9"
   }
 }
