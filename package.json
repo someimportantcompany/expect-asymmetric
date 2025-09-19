@@ -27,6 +27,7 @@
     "matchers"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "@types/ms": "^2.1.0",
     "date-fns": "^4.1.0",
     "esbuild": "^0.25.10",

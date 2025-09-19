@@ -12,9 +12,6 @@ concurrency:
 permissions:
   contents: write
   id-token: write
-  issues: write
-  packages: write
-  pages: write
   pull-requests: write
 
 jobs:
@@ -24,10 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/init-node
       - run: pnpm run build
-
       - uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
         id: changesets
         with:
-          title: 'ci: version packages'
+          title: 'ci: Version packages'
           commit: 'ci: version packages'
           publish: pnpm exec changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
