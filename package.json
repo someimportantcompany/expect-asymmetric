@@ -8,7 +8,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "test:intg": "pnpm --filter './integration-tests/*' run test:intg",
+    "test:intg": "pnpm --workspace-concurrency=1 --filter './integration-tests/*' --if-present run test:intg",
     "test:unit": "vitest run --dir ./src"
   },
   "author": "jdrydn <james@jdrydn.com> (https://jdrydn.com)",
