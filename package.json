@@ -16,6 +16,10 @@
   "repository": "https://github.com/someimportantcompany/expect-asymmetric",
   "homepage": "https://github.com/someimportantcompany/expect-asymmetric",
   "bugs": "https://github.com/someimportantcompany/expect-asymmetric/issues",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "files": [
     "dist/"
   ],
