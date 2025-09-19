@@ -1,0 +1,20 @@
+name: Pull Requests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/init-node
+      # - run: pnpm run lint
+      - run: pnpm run test:unit
+      - run: pnpm run build
+      - run: pnpm pack --out /dev/null
+      - run: pnpm run test:intg
