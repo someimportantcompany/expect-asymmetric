@@ -50,8 +50,8 @@ export const stringBase64Encoded = () => {
 };
 
 export const stringDateISO8601 = () => {
-  const pattern = // From https://github.com/colinhacks/zod/blob/62bf4e439e287e55c843245b49f8d34b1ad024ee/packages/zod/src/v4/core/regexes.ts#L10
-    /^P(?:(\d+W)|(?!.*W)(?=\d|T\d)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+([.,]\d+)?S)?)?)$/;
+  const pattern = // From https://github.com/validatorjs/validator.js/blob/6f436be36945e460ee624bf72a935a06daded859/src/lib/isISO8601.js#L7
+    /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/;
 
   return new AsymmetricMatcher(`stringDateISO8601()`, (actual) => {
     return typeof actual === 'string' && pattern.test(actual);

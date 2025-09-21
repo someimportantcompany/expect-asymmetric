@@ -10,7 +10,7 @@ export const dateEquals = (expected: Date | Date[]) => {
       'Expected all expected values passed to dateEquals to be a Date',
     );
 
-    return new AsymmetricMatcher(`stringEquals(["${expected.join('", "')}"])`, (actual) => {
+    return new AsymmetricMatcher(`dateEquals(["${expected.join('", "')}"])`, (actual) => {
       const date = actual instanceof Date ? actual : new Date(String(actual));
       if (isNaN(date.getTime())) {
         return false;
@@ -19,9 +19,9 @@ export const dateEquals = (expected: Date | Date[]) => {
       return expected.includes(date);
     });
   } else {
-    assert(typeof expected === 'string', 'Expected value passed to dateEquals to be a Date');
+    assert(expected instanceof Date, 'Expected value passed to dateEquals to be a Date');
 
-    return new AsymmetricMatcher(`stringEquals("${expected}")`, (actual) => {
+    return new AsymmetricMatcher(`dateEquals("${expected}")`, (actual) => {
       const date = actual instanceof Date ? actual : new Date(String(actual));
       if (isNaN(date.getTime())) {
         return false;
