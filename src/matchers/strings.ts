@@ -10,7 +10,7 @@ export const stringEquals = (expected: string | string[]) => {
       'Expected all expected values passed to stringEquals to be a string',
     );
 
-    return new AsymmetricMatcher(`stringEquals("${expected.join('", "')}"})`, (actual) => {
+    return new AsymmetricMatcher(`stringEquals(["${expected.join('", "')}"])`, (actual) => {
       return typeof actual === 'string' && expected.includes(actual);
     });
   } else {
