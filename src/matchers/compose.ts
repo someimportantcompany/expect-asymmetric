@@ -1,4 +1,4 @@
-import AsymmetricMatcher from './matcher';
+import AsymmetricMatcher from '../matcher';
 
 export function and(matchers: AsymmetricMatcher[]): AsymmetricMatcher {
   return new AsymmetricMatcher(
