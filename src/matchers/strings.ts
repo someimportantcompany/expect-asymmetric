@@ -83,8 +83,8 @@ export const stringJSON = () => {
 };
 
 export const stringJWT = () => {
-  const pattern = // From https://github.com/colinhacks/zod/blob/62bf4e439e287e55c843245b49f8d34b1ad024ee/packages/zod/src/v4/core/regexes.ts#L69
-    /^$|^(?:[0-9a-zA-Z+/]{4})*(?:(?:[0-9a-zA-Z+/]{2}==)|(?:[0-9a-zA-Z+/]{3}=))?$/;
+  const pattern = // From https://github.com/validatorjs/validator.js/blob/6f436be36945e460ee624bf72a935a06daded859/src/lib/isBase64.js#L7
+    /^[A-Za-z0-9_-]+$/;
 
   return new AsymmetricMatcher(`stringJWT()`, (actual) => {
     return (
@@ -93,7 +93,14 @@ export const stringJWT = () => {
       // Made up of three parts, separated by commas
       actual.split('.').length === 3 &&
       // And each part should be base64-encoded
-      actual.split('.').every((a) => pattern.test(a))
+      actual.split('.').every((a, i) => {
+        if (i === 0 || i === 1) {
+          return pattern.test(a);
+        } else {
+          // Signature isn't base64-encoded
+          return i === 2 && typeof a === 'string';
+        }
+      })
     );
   });
 };
