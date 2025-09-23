@@ -64,6 +64,25 @@ describe('#stringEndsWith', () => {
   );
 });
 
+describe('#stringIncludes', () => {
+  test(
+    'it should pass with valid input',
+    shouldPassWith({
+      input: "Do not try and bend the spoon. That's impossible. Instead, only try to realize the truth.",
+      createMatcher: () => matchers.stringIncludes('bend the spoon'),
+      matcherString: 'stringIncludes("bend the spoon")',
+    }),
+  );
+
+  test(
+    'it should fail with invalid input',
+    shoudFailWith({
+      input: "Do not try and bend the spoon. That's impossible. Instead, only try to realize the truth.",
+      createMatcher: () => matchers.stringIncludes('There is no spoon'),
+    }),
+  );
+});
+
 describe('#stringMatches', () => {
   test(
     'it should pass with valid input',

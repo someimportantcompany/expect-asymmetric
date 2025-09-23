@@ -14,9 +14,16 @@ export function or(matchers: AsymmetricMatcher[]): AsymmetricMatcher {
   );
 }
 
-export function not(matchers: AsymmetricMatcher[]): AsymmetricMatcher {
-  return new AsymmetricMatcher(
-    `NOT(${matchers.map((matcher) => matcher.toAsymmetricMatcher()).join(', ')})`,
-    (value) => matchers.every((matcher) => matcher.asymmetricMatch(value)) === false,
-  );
+export function not(matchers: AsymmetricMatcher | AsymmetricMatcher[]): AsymmetricMatcher {
+  if (Array.isArray(matchers)) {
+    return new AsymmetricMatcher(
+      `NOT(${matchers.map((matcher) => matcher.toAsymmetricMatcher()).join(', ')})`,
+      (value) => matchers.every((matcher) => matcher.asymmetricMatch(value)) === false,
+    );
+  } else {
+    return new AsymmetricMatcher(
+      `NOT(${matchers.toAsymmetricMatcher()})`,
+      (value) => matchers.asymmetricMatch(value) === false,
+    );
+  }
 }

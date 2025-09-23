@@ -1,8 +1,39 @@
 import { describe, test, expect } from 'vitest';
 import { subMilliseconds, subDays } from 'date-fns';
 
+import { shouldPassWith, shoudFailWith } from '../../test/routine';
+
 import * as matchers from './dates';
 import { extractDatePortion } from './utils';
+
+describe('#dateEquals', () => {
+  test(
+    'it should pass with valid input (one)',
+    shouldPassWith({
+      input: new Date('2025-09-23T07:00:00.000Z'),
+      createMatcher: () => matchers.dateEquals(new Date('2025-09-23T07:00:00.000Z')),
+      matcherString: 'dateEquals(new Date("2025-09-23T07:00:00.000Z"))',
+    }),
+  );
+
+  test(
+    'it should pass with valid input (many)',
+    shouldPassWith({
+      input: new Date('2025-09-23T07:00:00.000Z'),
+      createMatcher: () =>
+        matchers.dateEquals([new Date('2025-09-23T07:00:00.000Z'), new Date('2025-09-22T21:00:00.000Z')]),
+      matcherString: 'dateEquals([new Date("2025-09-23T07:00:00.000Z"), new Date("2025-09-22T21:00:00.000Z")])',
+    }),
+  );
+
+  test(
+    'it should fail with invalid input',
+    shoudFailWith({
+      input: new Date('2025-09-23T08:00:00.000Z'),
+      createMatcher: () => matchers.dateEquals(new Date('2025-09-23T07:00:00.000Z')),
+    }),
+  );
+});
 
 describe('#dateToday', () => {
   const today = new Date();

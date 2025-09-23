@@ -4,7 +4,7 @@ import { shouldPassWith, shoudFailWith } from '../../test/routine';
 
 import * as matchers from './numbers';
 
-describe('#stringEquals', () => {
+describe('#numberEquals', () => {
   test(
     'it should pass with valid input (one)',
     shouldPassWith({

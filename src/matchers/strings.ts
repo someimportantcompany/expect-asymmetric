@@ -34,6 +34,12 @@ export const stringEndsWith = (suffix: string) => {
   });
 };
 
+export const stringIncludes = (contains: string) => {
+  return new AsymmetricMatcher(`stringIncludes("${contains}")`, (actual) => {
+    return typeof actual === 'string' && actual.includes(contains);
+  });
+};
+
 export const stringMatches = (pattern: RegExp) => {
   return new AsymmetricMatcher(`stringMatches(${pattern})`, (actual) => {
     return typeof actual === 'string' && pattern.test(actual);
