@@ -34,13 +34,15 @@ export const numberLessThan = (expected: number) => {
 };
 
 export const numberBetween = (min: number, max: number) => {
+  assert(max > min, 'Expected max to be greater than min for numberBetween');
+
   return new AsymmetricMatcher(`numberBetween(${min}, ${max})`, (actual) => {
     return typeof actual === 'number' && actual > min && actual < max;
   });
 };
 
 export const numberFloat = () => {
-  return new AsymmetricMatcher('numberFloat', (actual) => {
+  return new AsymmetricMatcher('numberFloat()', (actual) => {
     return typeof actual === 'number' && actual % 1 !== 0;
   });
 };
