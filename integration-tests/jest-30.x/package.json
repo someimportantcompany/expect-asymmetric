@@ -1,0 +1,14 @@
+{
+  "name": "@expect-asymmetric/jest-30.x-integration-tests",
+  "description": "Testing Vitest with expect-asymmetric",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test:intg": "jest"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.1.2",
+    "jest": "^30.1.3",
+    "ts-jest": "^29.4.4"
+  }
+}

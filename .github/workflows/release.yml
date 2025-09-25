@@ -20,7 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/init-node
+
+      - run: pnpm run test:unit
       - run: pnpm run build
+      - run: pnpm run test:intg
+
       - uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
         id: changesets
         with:

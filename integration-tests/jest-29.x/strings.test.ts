@@ -1,6 +1,5 @@
-import { test, expect } from 'vitest';
-
-import matchers from '../../';
+import { test, expect } from '@jest/globals';
+import matchers from '../../dist';
 
 test('#stringStartsWith', () => {
   expect('Hello world').toEqual(matchers.stringStartsWith('Hello'));

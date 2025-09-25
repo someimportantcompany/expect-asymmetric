@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "silent": false,
+  "verbose": true,
+  "clearMocks": true,
+  "testMatch": ["**/*.test.ts"]
+}
