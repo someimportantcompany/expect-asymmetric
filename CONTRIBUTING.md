@@ -28,7 +28,7 @@ $ pnpm install --frozen-lockfile
 - Integration tests should act as a sanity check that the built package is functioning as
   expected.
 
-### Unit Tests
+### Unit tests
 
 To run the unit tests for this application, you can run the following command in the root of the
 repository:
@@ -45,7 +45,7 @@ Build the package with:
 $ pnpm run build
 ```
 
-### Integration Tests
+### Integration tests
 
 Once the package has been built, you can run integration tests with:
 
@@ -53,7 +53,7 @@ Once the package has been built, you can run integration tests with:
 $ pnpm run test:intg
 ```
 
-## Pull Requests
+## Pull requests
 
 When you've got some changes pushed to your branch, it's time to open up a pull request!
 
@@ -62,7 +62,7 @@ To get started, open a PR comparing `main` with `your-branch`.
 **Your PR will need to be approved by another contributor**, so the more detail you here add
 the better!
 
-### Pull-Requests workflow
+### Pull-requests workflow
 
 When your PR is opened, the [**Pull Requests** workflow](./.github/workflows/pull-requests.yml) will
 trigger, which will:
@@ -70,6 +70,27 @@ trigger, which will:
 - Install dependencies
 - Build the package
 - Run the integration tests
+
+## Publishing packages
+
+This repository uses [changesets](https://github.com/changesets/changesets) to orchestrate publishing,
+changelogs and versioning of packages. There is detailed documentation for how to use changesets in the
+[changesets repository](https://github.com/changesets/changesets) but here is a simple overview of the
+process.
+
+When you want to publish packages you create a changeset:
+
+```sh
+pnpm changeset
+```
+
+Work through the CLI options and select which packages to release and what version bump they require
+(major, minor or patch) and answer any other questions.
+
+Once you have created a changeset you can commit it to your branch and open a PR. When the PR is merged
+changeset will generate a changelog off your changeset and open its own PR. When that PR is merged changesets
+will publish unpublished packages to the registry.
+
 
 ### Merging
 
